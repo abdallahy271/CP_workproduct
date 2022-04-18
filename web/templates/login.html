@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block title %}Private Search{% endblock %}
+{% from "_formshelper.html" import render_field %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-6">
+    <form action="{{ url_for('users.login') }}" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.email.label }}
+          {{ render_field(form.email, class="form-control", placeholder="Email address") }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label }}
+          {{ render_field(form.password, class="form-control", placeholder="Password") }}
+        </div>
+        <input type="submit" value="Log In" class="btn btn-lg btn-success">
+        <p><br /><em><a href="/reset">Forgot your password?</a></em></p>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <h3>Start searching your online footprint today!</h3>
+    <h4>Private Search: Remembering every detail .</h4>
+    <p>With Private Search you have a simple search engine that helps you keep track of your digital footprint and recollect already searched pages.</p>
+    <p><em>Don't have an account yet?</em> <a href="{{ url_for('users.register') }}">Sign up for free!</a></p>
+  </div>
+</div>
+
+
+{% endblock %}

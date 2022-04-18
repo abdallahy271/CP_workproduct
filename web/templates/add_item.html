@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block title %}Private Search{% endblock %}
+{% from "_formshelper.html" import render_field %}
+{% block content %}
+
+<form action="{{ url_for('items.add_item') }}" method="post" name="itemsform" role="form">
+    {{ form.csrf_token }}
+    {{ form.search.label }}
+    <div class="row ">
+          <div class="col-8">
+            <div class="input-group input-group-lg">
+              {{ render_field(form.search, class="form-control") }}
+              <div class="input-group-btn ml-4">
+                <input type="submit" value="Search" class="btn btn-lg btn-success">
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+</form>
+
+{% if search_result != None%}
+
+  {% if search_result.results[0] == NULL %}
+  <div class="panel-body">
+    <p>No items are added yet, <a href="{{ url_for('items.add_item') }}">add a new item</a>.</p>
+  </div>
+  {% else %}
+
+  <table class="table table-stripe">
+    <thead>
+      <tr>
+        <th class="border-top-0">Search Results</th>
+        <th class="border-top-0"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in search_result.results %}
+        {% for attribute in item %}
+          <tr>
+            <th>{{ attribute }}</th>
+            <td>{{ item[attribute] }}</td>
+          </tr>
+          {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+{% endif %}
+
+{% endblock %}

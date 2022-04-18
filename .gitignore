@@ -1,1 +1,40 @@
-.DS_Store
+# Project specific files to ignore
+web/web.db
+venv_unit/
+venv_integration/
+__pycache__/
+
+# Distribution / packaging
+.Python
+build/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Environments
+.env
+.venv
+.flaskenv
+
+*.DS_Store
